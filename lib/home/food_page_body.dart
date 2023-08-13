@@ -39,6 +39,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        // top container showing cards
         Container(
           height: Dimensions.pageView,
           child: PageView.builder(
@@ -91,6 +92,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
       transform: matrix,
       child: Stack(
         children: [
+          // bottom larget card
           Container(
             height: Dimensions.pageViewContainer,
             margin: EdgeInsets.only(
@@ -108,8 +110,10 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               ),
             ),
           ),
+          // align to align the top card on the bottom card
           Align(
             alignment: Alignment.bottomCenter,
+            // top card
             child: Container(
               height: Dimensions.pageViewTextContainer,
               margin: EdgeInsets.only(
@@ -147,6 +151,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                   children: [
                     BigText(text: 'Chinese Slide'),
                     SizedBox(height: Dimensions.height10),
+                    // ratings and comments row
                     Row(
                       children: [
                         Wrap(
@@ -168,6 +173,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                       ],
                     ),
                     SizedBox(height: Dimensions.height20),
+                    // row to showin distance and time
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [

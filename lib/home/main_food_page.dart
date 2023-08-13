@@ -20,6 +20,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
     return Scaffold(
       body: Column(
         children: [
+          // topbar showing country name and search icon
           Container(
             child: Container(
               margin: EdgeInsets.only(
@@ -33,6 +34,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  // column showing country name and city
                   Column(
                     children: [
                       BigText(
@@ -40,6 +42,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
                         color: AppColors.mainColor,
                         size: 30,
                       ),
+                      // row showing city name and arrow icon
                       Row(
                         children: [
                           SmallText(
@@ -51,6 +54,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
                       ),
                     ],
                   ),
+                  //  search icon
                   Center(
                     child: Container(
                       width: Dimensions.height45,
@@ -71,6 +75,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
               ),
             ),
           ),
+          // showing the rest of the food page
           const FoodPageBody(),
         ],
       ),
