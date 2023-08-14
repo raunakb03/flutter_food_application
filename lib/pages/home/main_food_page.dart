@@ -1,7 +1,7 @@
 // ignore_for_file: avoid_unnecessary_containers
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:food_app/home/food_page_body.dart';
+import 'package:food_app/pages/home/food_page_body.dart';
 import 'package:food_app/utils/dimensions.dart';
 import 'package:food_app/widgets/big_text.dart';
 import 'package:food_app/utils/colors.dart';
