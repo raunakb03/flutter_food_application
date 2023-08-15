@@ -4,3 +4,5 @@ stack align
 SingleChildScrollView
 ListViewBuilder: ShrinkWrap, NeverScrollableScrollPhysics
 TextOverflow.ellipsis
+CustomScrollView
+SliverAppBar--> ExpandedHeight--->flexibleSpace-->FlexibleSpaceBar
