@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:food_app/pages/home/main_food_page.dart';
+import 'package:food_app/controllers/popular_product_controller.dart';
 import 'package:food_app/routes/route_helper.dart';
+import 'package:food_app/utils/app_constants.dart';
 import 'package:food_app/utils/colors.dart';
 import 'package:food_app/utils/dimensions.dart';
 import 'package:food_app/widgets/app_column.dart';
@@ -10,10 +11,12 @@ import 'package:food_app/widgets/expandable_text.dart';
 import 'package:get/get.dart';
 
 class PopularFoodDetail extends StatelessWidget {
-  const PopularFoodDetail({super.key});
-
+  PopularFoodDetail({super.key, required this.pageId});
+  int pageId;
   @override
   Widget build(BuildContext context) {
+    var product =
+        Get.find<PopularProductController>().popularProductList[pageId];
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -25,9 +28,11 @@ class PopularFoodDetail extends StatelessWidget {
             child: Container(
               width: double.maxFinite,
               height: Dimensions.popularFoodImgSize,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage("assets/image/food0.png"),
+                  image: NetworkImage(
+                    "${AppConstants.BASE_URL}${AppConstants.UPLOAD_URL}${product.img!}",
+                  ),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -74,16 +79,14 @@ class PopularFoodDetail extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const AppColumn(text: 'Chinese Slide'),
+                  AppColumn(text: product.name!),
                   SizedBox(height: Dimensions.height20),
                   BigText(text: 'Introduce'),
                   // expandable text widget
                   const SizedBox(height: 20),
-                  const Expanded(
+                  Expanded(
                     child: SingleChildScrollView(
-                      child: ExpandableTextWidget(
-                          text:
-                              'hello there how are you i am fineello there how are you i am fine hello there how are you i am finehello there how are you i am finehello there how are you i am finehello there how are you i am finehello there how are you i am finehello there how are you i am finehello there how are you i am finehello there how are you i am finehello there how are you i am finehello there how are you i am finehello there how are you i am finehello there how are you i am finehello there how are you i am finehello there how are you i am finehello there how are you i am fine hello there how are you i am fineello there how are you i am fine hello there how are you i am finehello there how are you i am finehello there how are you i am finehello there how are you i am finehello there how are you i am finehello there how are you i am finehello there how are you i am finehello there how are you i am finehello there how are you i am finehello there how are you i am finehello there how are you i am finehello there how are you i am finehello there how are you i am finehello there how are you i am finehell o there how are you i am finehello there how are you i am fineello there how are you i am fine hello there how are you i am finehello there how are you i am finehello there how are you i am finehello there how are you i am finehello there how are you i am finehello there how are you i am finehello there how are you i am finehello there how are you i am finehello there how are you i am finehello there how are you i am finehello there how are you i am finehello there how are you i am finehello there how are you i am finehello there how are you i am finehello there how are you i am fine hello there how are you i am fineello there how are you i am fine hello there how are you i am finehello there how are you i am finehello there how are you i am finehello there how are you i am finehello there how are you i am finehello there how are you i am finehello there how are you i am finehello there how are you i am finehello there how are you i am finehello there how are you i am finehello there how are you i am finehello there how are you i am finehello there how are you i am finehello there how are you i am finehell o there how are you i am finehello there how are you i am fineello there how are you i am fine hello there how are you i am finehello there how are you i am finehello there how are you i am finehello there how are you i '),
+                      child: ExpandableTextWidget(text: product.description),
                     ),
                   )
                 ],
@@ -144,7 +147,9 @@ class PopularFoodDetail extends StatelessWidget {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(Dimensions.radius20),
                   color: AppColors.mainColor),
-              child: BigText(text: "\$10 | Add to Cart", color: Colors.white),
+              child: BigText(
+                  text: "\$ ${product.price!} | Add to Cart",
+                  color: Colors.white),
             )
           ],
         ),
