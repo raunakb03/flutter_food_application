@@ -1,4 +1,4 @@
-import 'package:food_app/data/api/repository/popular_product_repo.dart';
+import 'package:food_app/data/repository/popular_product_repo.dart';
 import 'package:food_app/models/products_model.dart';
 import 'package:get/get.dart';
 
