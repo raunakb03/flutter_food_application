@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:food_app/pages/food/popular_food_detail.dart';
+import 'package:food_app/controllers/popular_product_controller.dart';
 import 'package:food_app/pages/food/recommended_food_detail.dart';
-import 'package:food_app/pages/home/main_food_page.dart';
 import 'package:get/get.dart';
+import 'package:food_app/helper/dependencies.dart' as dep;
 
-void main() {
+Future<void> main() async {
+  // this will wait for all the dependencies to be initialized
+  WidgetsFlutterBinding.ensureInitialized();
+  await dep.init();
   runApp(const MyApp());
 }
 
@@ -13,6 +16,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.find<PopularProductController>().getPopularProductList();
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Food Application',
