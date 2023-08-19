@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:food_app/routes/route_helper.dart';
 import 'package:food_app/utils/colors.dart';
 import 'package:food_app/utils/dimensions.dart';
 import 'package:food_app/widgets/app_icon.dart';
 import 'package:food_app/widgets/big_text.dart';
 import 'package:food_app/widgets/expandable_text.dart';
+import 'package:get/get.dart';
 
 class RecommendedFoodDetail extends StatelessWidget {
   const RecommendedFoodDetail({super.key});
@@ -16,12 +18,18 @@ class RecommendedFoodDetail extends StatelessWidget {
         slivers: [
           SliverAppBar(
             // the two icons section
+            automaticallyImplyLeading: false,
             toolbarHeight: 80,
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                AppIcon(icon: Icons.clear),
-                AppIcon(icon: Icons.shopping_cart_outlined)
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    Get.toNamed(RouteHelper.initial);
+                  },
+                  child: const AppIcon(icon: Icons.clear),
+                ),
+                const AppIcon(icon: Icons.shopping_cart_outlined)
               ],
             ),
             // the text between image and text sectioon
@@ -128,18 +136,20 @@ class RecommendedFoodDetail extends StatelessWidget {
               children: [
                 // showing plus and minus icons
                 Container(
-                  padding: EdgeInsets.only(
-                    top: Dimensions.height20,
-                    bottom: Dimensions.height20,
-                    left: Dimensions.width20,
-                    right: Dimensions.width20,
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(Dimensions.radius20),
-                    color: Colors.white,
-                  ),
-                  child: Icon(Icons.favorite_outline_outlined,color: AppColors.mainColor,)
-                ),
+                    padding: EdgeInsets.only(
+                      top: Dimensions.height20,
+                      bottom: Dimensions.height20,
+                      left: Dimensions.width20,
+                      right: Dimensions.width20,
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(Dimensions.radius20),
+                      color: Colors.white,
+                    ),
+                    child: Icon(
+                      Icons.favorite_outline_outlined,
+                      color: AppColors.mainColor,
+                    )),
                 // add to cart button
                 Container(
                   padding: EdgeInsets.only(
