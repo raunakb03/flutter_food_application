@@ -11,8 +11,8 @@ import 'package:food_app/widgets/expandable_text.dart';
 import 'package:get/get.dart';
 
 class PopularFoodDetail extends StatelessWidget {
-  PopularFoodDetail({super.key, required this.pageId});
-  int pageId;
+  const PopularFoodDetail({super.key, required this.pageId});
+  final int pageId;
   @override
   Widget build(BuildContext context) {
     var product =

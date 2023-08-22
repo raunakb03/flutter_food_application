@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:food_app/controllers/recommended_product_controller.dart';
 import 'package:food_app/routes/route_helper.dart';
+import 'package:food_app/utils/app_constants.dart';
 import 'package:food_app/utils/colors.dart';
 import 'package:food_app/utils/dimensions.dart';
 import 'package:food_app/widgets/app_icon.dart';
@@ -8,9 +10,12 @@ import 'package:food_app/widgets/expandable_text.dart';
 import 'package:get/get.dart';
 
 class RecommendedFoodDetail extends StatelessWidget {
-  const RecommendedFoodDetail({super.key});
+  const RecommendedFoodDetail({super.key, required this.pageId});
+  final int pageId;
   @override
   Widget build(BuildContext context) {
+    var product =
+        Get.find<RecommendedProductController>().recommendedProductList[pageId];
     return Scaffold(
       backgroundColor: Colors.white,
       // top scrollable section
@@ -47,7 +52,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                 ),
                 child: Center(
                   child: BigText(
-                    text: "Chinese Side",
+                    text: product.name!,
                     size: Dimensions.font26,
                   ),
                 ),
@@ -58,8 +63,8 @@ class RecommendedFoodDetail extends StatelessWidget {
             backgroundColor: AppColors.yellowColor,
             // image
             flexibleSpace: FlexibleSpaceBar(
-              background: Image.asset(
-                'assets/image/food0.png',
+              background: Image.network(
+                "${AppConstants.BASE_URL}${AppConstants.UPLOAD_URL}${product.img!}",
                 width: double.maxFinite,
                 fit: BoxFit.cover,
               ),
@@ -71,9 +76,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.only(
                       left: Dimensions.width20, right: Dimensions.width20),
-                  child: ExpandableTextWidget(
-                      text:
-                          'hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there hello there '),
+                  child: ExpandableTextWidget(text: product.description!),
                 ),
               ],
             ),
@@ -102,7 +105,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                   iconSize: Dimensions.iconSize24,
                 ),
                 BigText(
-                  text: '\$12.88  X  0',
+                  text: '\$ ${product.price!}  X  0',
                   color: AppColors.mainBlackColor,
                   size: Dimensions.font26,
                 ),
