@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_app/controllers/cart_controller.dart';
 import 'package:food_app/data/repository/popular_product_repo.dart';
 import 'package:food_app/models/products_model.dart';
 import 'package:food_app/utils/colors.dart';
@@ -7,12 +8,10 @@ import 'package:get/get.dart';
 class PopularProductController extends GetxController {
   PopularProductController({required this.popularProductRepo});
 
+  // getting products from the backend
   final PopularProductRepo popularProductRepo;
   List<dynamic> _popularProductList = [];
   List<dynamic> get popularProductList => _popularProductList;
-  bool _isLoaded = false;
-  bool get isLoaded => _isLoaded;
-  int _quantity = 0;
 
   Future<void> getPopularProductList() async {
     Response response = await popularProductRepo.getPopularProductList();
@@ -23,6 +22,18 @@ class PopularProductController extends GetxController {
       update(); // this is like setState()
     } else {}
   }
+
+  // loading function
+  bool _isLoaded = false;
+  bool get isLoaded => _isLoaded;
+
+  // adding items to cart stuffs
+  int _quantity = 0;
+  int _inCartItems = 0;
+  late CartController _cart;
+
+  int get quantity => _quantity;
+  int get inCartItems => _inCartItems + _quantity;
 
   void setQuantity(bool isIncrement) {
     if (isIncrement) {
@@ -55,6 +66,29 @@ class PopularProductController extends GetxController {
     return quantity;
   }
 
-  int get quantity => _quantity;
+  void initProduct(ProductModel product, CartController cart) {
+    _quantity = 0;
+    _inCartItems = 0;
+    _cart = cart;
+    var exist = false;
+    exist = _cart.existInCart(product);
+    if (exist) {
+      _inCartItems = cart.getQuantity(product);
+    }
+    // get from storage
+  }
 
+  void addItem(ProductModel product) {
+    if (_quantity > 0) {
+      _cart.addItem(product, _quantity);
+      _quantity = 0;
+    } else {
+      Get.snackbar(
+        "Item Count",
+        'Item count can\'t be 0',
+        backgroundColor: AppColors.mainColor,
+        colorText: Colors.white,
+      );
+    }
+  }
 }
